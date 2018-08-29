@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/MyBatis_03/MyBatis_03.iml" filepath="$PROJECT_DIR$/MyBatis_03/MyBatis_03.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MyBatistwo_01/MyBatistwo_01.iml" filepath="$PROJECT_DIR$/MyBatistwo_01/MyBatistwo_01.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MyBatistwo_02/MyBatistwo_02.iml" filepath="$PROJECT_DIR$/MyBatistwo_02/MyBatistwo_02.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Mybaits_04/Mybaits_04.iml" filepath="$PROJECT_DIR$/Mybaits_04/Mybaits_04.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Mybaits_06/Mybaits_06.iml" filepath="$PROJECT_DIR$/Mybaits_06/Mybaits_06.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Mybatis_05/Mybatis_05.iml" filepath="$PROJECT_DIR$/Mybatis_05/Mybatis_05.iml" />
+      <module fileurl="file://$PROJECT_DIR$/firstMyBatis.iml" filepath="$PROJECT_DIR$/firstMyBatis.iml" />
+    </modules>
+  </component>
+</project>

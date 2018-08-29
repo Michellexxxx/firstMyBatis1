@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace务必和接口的全类名一致 -->
+<mapper namespace="MyBatisthree.dao.UserMapper">
+    <resultMap id="Mapcountry" type="country" >
+        <id property="cid" column="cid"/>
+        <result property="cName" column="cName"/>
+
+        <!--<collection property="provices" ofType="provice">&lt;!&ndash; column="cid" select="selectprovicebyid"&ndash;&gt;&lt;!&ndash;延时加载&ndash;&gt;
+            <id property="pid" column="pid"/>
+            <result property="pName" column="pName"/>
+          <association property="cou" javaType="country" select="selectCountrybyid" column="cid"/>
+        </collection>-->
+    </resultMap>
+
+    <resultMap id="provices" type="provice">
+        <id property="pid" column="pid"/>
+        <result property="pName" column="pName"/>
+        <association property="cou" javaType="country" select="selectCountrybyid" column="pid"/>
+    </resultMap>
+
+
+     <select id="selectCountrybyid" resultType="country">
+         SELECT cid,cName FROM country
+         WHERE cid=#{xxx}
+     </select>
+
+    <select id="selectprovicebyid" resultMap="provices">
+        SELECT pid,pName FROM province
+        WHERE pid=#{xxx}
+    </select>
+
+     <!--根据id查询国家-->
+   <!-- <select id="selectCountrybyid" resultMap="Mapcountry">
+                SELECT c.cid,c.cName,p.pid,p.pName FROM country c,province p
+                <where>
+                    c.cid=p.cid AND c.cid=#{xxx}
+                </where>
+    </select>-->
+    </mapper>

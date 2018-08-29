@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace务必和接口的全类名一致 -->
+<mapper namespace="Mybatistwo.dao.UserMapper">
+
+    <insert id="addUser" parameterType="Mybatistwo.pojo.Users">
+<selectKey resultType="int" keyProperty="id" order="AFTER">
+    SELECT  LAST_INSERT_ID();
+</selectKey>
+        INSERT INTO mybatiesone(userName,PASSWORD) VALUE (#{userName},#{password})
+    </insert>
+    <delete id="delete" parameterType="Mybatistwo.pojo.Users">
+        DELETE from mybatiesone WHERE id=(#{id})
+    </delete>
+    <update id="update" parameterType="Mybatistwo.pojo.Users">
+        UPDATE  mybatiesone SET userName=(#{userName}),password=(#{password}) WHERE id=(#{id})
+    </update>
+
+    <select id="findUserByid"  resultMap="find">
+        SELECT id,userName,password from mybatiesone WHERE id=(#{id})
+    </select>
+     <resultMap id="find" type="Mybatistwo.pojo.Users">
+         <result property="id" column="id"/>
+         <result property="userName" column="username"/>
+         <result property="password" column="password"/>
+     </resultMap>
+    <select id="findAllUuser" resultMap="find">
+        SELECT id,userName,password from mybatiesone
+    </select>
+
+    <select id="login" resultType="INTEGER">
+        SELECT COUNT(*) FROM mybatiesone WHERE  username=#{userName} AND password=#{password}
+    </select>
+
+    <delete id="deletechoose" parameterType="Mybatistwo.pojo.Users">
+          DELETE FROM mybatiesone
+          <where>
+              <if test="id!=null">
+                  AND id=#{id}
+              </if>
+              <if test="userName!=null">
+                  AND userName=#{username}
+              </if>
+              <if test="password!=null">
+                  AND  password=#{password}
+              </if>
+          </where>
+    </delete>
+    <update id="updatechoose" parameterType="Mybatistwo.pojo.Users">
+        UPDATE mybatiesone SET userName=#{userName},password=#{password} WHERE id=#{id}
+
+    </update>
+</mapper>

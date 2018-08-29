@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace务必和接口的全类名一致 -->
+<mapper namespace="MyBatisfive.dao.UserMapper">
+    <select id="selectByteacherid" resultMap="teacherMap">
+           SELECT id,name,tid FROM teacher WHERE id=#{ss}
+    </select>
+
+
+    <resultMap id="teacherMap" type="Teacher">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <association property="teacher" javaType="Teacher" select="selectByteacherid" column="tid"/>
+    </resultMap>
+    </mapper>

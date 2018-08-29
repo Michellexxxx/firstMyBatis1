@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace务必和接口的全类名一致 -->
+<mapper namespace="MyBatisfour.dao.UserMapper">
+
+
+    <!--多对多-->
+   <select id="selectTeachersByid" resultMap="studentMap">
+       SELECT s.sid,t.id,s.sname,t.NAME FROM student s,teacher t,middle m
+       WHERE s.sid=m.sid AND t.id=m.id
+       AND s.sid=#{xxx}
+   </select>
+
+<resultMap id="studentMap" type="Student">
+    <id property="sid" column="sid"/>
+    <result property="sname" column="sname"/>
+    <collection property="teacher" ofType="Teacher">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+    </collection>
+</resultMap>
+
+
+    <!--多对多-->
+    <!--<select id="selectStudentByid" resultMap="teacherMap">
+        SELECT s.sid,t.id,s.sname,t.name FROM student s,teacher t,middle m
+        WHERE s.sid=m.sid
+        AND t.id=m.id
+        AND t.id=#{xxx}
+    </select>
+
+    <resultMap id="teacherMap" type="Teacher">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <collection property="student" ofType="Student">
+            <id property="sid" column="sid"/>
+            <result property="sname" column="sname"/>
+        </collection>
+    </resultMap>-->
+
+    <!--自动一对多-->
+    <select id="selectTeachreByid" resultMap="teacherMap">
+       SELECT id,NAME,tid FROM teacher WHERE tid=#{ss}
+    </select>
+
+
+    <resultMap id="teacherMap" type="Teacher">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <collection property="teacher" ofType="Teacher" select="selectTeachreByid" column="tid"/>
+    </resultMap>
+
+
+
+</mapper>
